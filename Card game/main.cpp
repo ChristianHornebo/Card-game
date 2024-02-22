@@ -14,10 +14,17 @@ int main() {
 	Player player3("Player 3");
 	
 	Game* game;
-	LowHandWin lowGame(deck);
-	HighHandWin highGame(deck);
-	game = &highGame;
-	// game = &lowGame;
+
+	std::cout << "Gametype: High or Low? ";
+	std::string gameType = "";
+	std::cin >> gameType;
+	if(gameType == "high" || gameType == "High")
+		game = new HighHandWin(deck);
+	else if(gameType == "low" || gameType == "Low")
+		game = new LowHandWin(deck);
+	else
+		game = new HighHandWin(deck);
+
 	game->acceptPlayer(&player1);
 	game->acceptPlayer(&player2);
 	game->acceptPlayer(&player3);
@@ -31,6 +38,8 @@ int main() {
 	std::cout << "Total hand: " << player3.totalHand() << "\n\n";
 
 	game->announceWinner();
+
+	delete game;
 
 	return 0;
 }
