@@ -3,9 +3,5 @@
 
 class YellowCard : public Card {
 public:
-	YellowCard(int number) {
-		number_ = number;
-		suit_ = 4;
-		suitName_ = "Yellow";
-	}
+	YellowCard(int number) : Card(number, 4, "Yellow") {}
 };

@@ -3,9 +3,6 @@
 
 class BlueCard : public Card {
 public:
-	BlueCard(int number) {
-		number_ = number;
-		suit_ = 2;
-		suitName_ = "Blue";
-	}
+	BlueCard(int number) : Card(number, 2, "Blue") {}
+	~BlueCard() { std::cout << "Blue card destroyed\n"; }
 };

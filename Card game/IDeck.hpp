@@ -26,14 +26,19 @@ public:
 			int pos1 = rand() % cards_.size();
 			int pos2 = rand() % cards_.size();
 
-			Card temp = cards_[pos1];
+			Card* temp = cards_[pos1];
 			cards_[pos1] = cards_[pos2];
 			cards_[pos2] = temp;
 		}
 	}
 
-	virtual ~IDeck() { std::cout << "IDeck destroyed\n"; }
+	virtual ~IDeck() { 
+		std::cout << "IDeck destroyed\n"; 
+		for (auto card : cards_) {
+			delete card;
+		}
+	}
 
 protected:
-	std::vector<Card> cards_;
+	std::vector<Card*> cards_;
 };

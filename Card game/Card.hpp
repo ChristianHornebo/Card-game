@@ -4,6 +4,8 @@
 
 class Card {
 public:
+	Card(int number, int suit, std::string suitName) : number_(number), suit_(suit), suitName_(suitName) {}
+	
 	int getValue() {
 		return number_ * suit_;
 	}

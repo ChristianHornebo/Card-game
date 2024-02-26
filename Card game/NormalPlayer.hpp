@@ -3,7 +3,7 @@
 class NormalPlayer : public IPlayer {
 public:
 	NormalPlayer(std::string name) : IPlayer(name) {}
-	void acceptCard(Card card) override {
+	void acceptCard(Card* card) override {
 		cards_.push_back(card);
 	}
 

@@ -10,12 +10,12 @@ public:
 		name_ = name;	
 	}
 
-	virtual void acceptCard(Card card) = 0;
+	virtual void acceptCard(Card* card) = 0;
 
 	int totalHand() {
 		int total = 0;
 		for (auto& card : cards_) {
-			total += card.getValue();
+			total += card->getValue();
 		}
 		return total;
 	}
@@ -23,7 +23,7 @@ public:
 	std::string showHand() {
 		std::string hand = name_ + " hand:\n";
 		for (auto& card : cards_) {
-			hand += card.displayCard() + "\n";
+			hand += card->displayCard() + "\n";
 		}
 		return hand;
 	}
@@ -32,10 +32,15 @@ public:
 		return name_;
 	}
 
-	virtual ~IPlayer() { std::cout << "IPlayer destroyed\n"; }
+	virtual ~IPlayer() { 
+		std::cout << "IPlayer destroyed\n"; 
+			for (auto& card : cards_) {
+			delete card;
+		}
+	}
 
 protected:
-	std::vector<Card> cards_;
+	std::vector<Card*> cards_;
 
 private:
 	std::string name_;
