@@ -14,8 +14,8 @@ int main() {
 	IPlayer* player3 = new WeakPlayer("Player 3");
 
 	std::cout << "Gametype: High or Low? ";
-	std::string gameTypeChosen = "Low";
-	//std::cin >> gameTypeChosen;
+	std::string gameTypeChosen = "";
+	std::cin >> gameTypeChosen;
 	Game game(deck, nullptr);
 
 	if (gameTypeChosen == "high" || gameTypeChosen == "High") {
