@@ -1,7 +1,7 @@
 #pragma once
-#include "Deck.hpp"
+#include "IDeck.hpp"
 
-class RedBlueDeck : public Deck {
+class RedBlueDeck : public IDeck {
 public:
 	void createDeck() override {
 		for (int i = 1; i <= 8; i++) {
@@ -9,4 +9,6 @@ public:
 			cards_.push_back(BlueCard(i));
 		}
 	}
+
+	~RedBlueDeck() override { std::cout << "RedBlueDeck destroyed\n"; }
 };

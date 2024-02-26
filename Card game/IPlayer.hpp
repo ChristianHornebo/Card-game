@@ -2,16 +2,15 @@
 #include <string>
 #include <vector>
 #include "Card.hpp"
+#include <iostream>
 
-class Player {
+class IPlayer {
 public:
-	Player(std::string name) {
+	IPlayer(std::string name) {
 		name_ = name;	
 	}
 
-	virtual void acceptCard(Card card) {
-		cards_.push_back(card);
-	}
+	virtual void acceptCard(Card card) = 0;
 
 	int totalHand() {
 		int total = 0;
@@ -32,6 +31,8 @@ public:
 	std::string getName() {
 		return name_;
 	}
+
+	virtual ~IPlayer() { std::cout << "IPlayer destroyed\n"; }
 
 protected:
 	std::vector<Card> cards_;

@@ -12,6 +12,8 @@ public:
 		return suitName_ + " " + std::to_string(number_);
 	}
 
+	~Card() { std::cout << "Card destroyed\n"; }
+
 protected:
 	int number_;
 	int suit_;

@@ -1,19 +1,19 @@
 #pragma once
 #include <list>
 #include <iostream>
-#include "Player.hpp"
-#include "Deck.hpp"
+#include "IPlayer.hpp"
+#include "IDeck.hpp"
 #include "IGametype.hpp"
 
 class Game {
 public:
-	Game(Deck* deck, IGameType* gameType) : deck_(deck), gameType_(gameType) {
+	Game(IDeck* deck, IGameType* gameType) : deck_(deck), gameType_(gameType) {
 		gameIsStarted_ = false;
 		deck_->createDeck();
 		deck_->shuffle();
 	}
 
-	void acceptPlayer(Player* player) {
+	void acceptPlayer(IPlayer* player) {
 		if (!gameIsStarted_) {
 			players_.push_back(player);
 		}
@@ -44,16 +44,15 @@ public:
 	}
 
 	~Game() {
-		delete gameType_;
-		delete deck_;
+		std::cout << "Game destroyed\n";
 	}
 
 protected:
-	std::list<Player*> players_;
+	std::list<IPlayer*> players_;
 	bool gameIsStarted_;
 
 private:
-	Deck* deck_ = nullptr;
+	IDeck* deck_ = nullptr;
 	IGameType* gameType_ = nullptr;
 	void dealCards() {
 		for (auto& player : players_) {

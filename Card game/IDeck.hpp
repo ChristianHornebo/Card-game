@@ -5,27 +5,20 @@
 #include "BlueCard.hpp"
 #include "GreenCard.hpp"
 #include "YellowCard.hpp"
-#include "Player.hpp"
+#include "IPlayer.hpp"
 #include <iostream>
 
 
-class Deck {
+class IDeck {
 public:
-	void deal(Player &player, int numOfCards) {
+	void deal(IPlayer &player, int numOfCards) {
 		for (int i = 0; i < numOfCards; i++) {
 			player.acceptCard(cards_.back());
 			cards_.pop_back();
 		}
 	}
 
-	virtual void createDeck() {
-		for (int i = 1; i <= 8; i++) {
-			cards_.push_back(RedCard(i));
-			cards_.push_back(BlueCard(i));
-			cards_.push_back(GreenCard(i));
-			cards_.push_back(YellowCard(i));
-		}
-	}
+	virtual void createDeck() = 0;
 
 	void shuffle() {
 		srand(time(0));
@@ -38,6 +31,8 @@ public:
 			cards_[pos2] = temp;
 		}
 	}
+
+	virtual ~IDeck() { std::cout << "IDeck destroyed\n"; }
 
 protected:
 	std::vector<Card> cards_;

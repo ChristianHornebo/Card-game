@@ -133,13 +133,15 @@
   <ItemGroup>
     <ClInclude Include="BlueCard.hpp" />
     <ClInclude Include="Card.hpp" />
-    <ClInclude Include="Deck.hpp" />
+    <ClInclude Include="IDeck.hpp" />
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="NormalDeck.hpp" />
+    <ClInclude Include="NormalPlayer.hpp" />
     <ClInclude Include="RedBlueDeck.hpp" />
     <ClInclude Include="IGametype.hpp" />
     <ClInclude Include="HighHandWin.hpp" />
     <ClInclude Include="LowHandWin.hpp" />
-    <ClInclude Include="Player.hpp" />
+    <ClInclude Include="IPlayer.hpp" />
     <ClInclude Include="RedCard.hpp" />
     <ClInclude Include="WeakPlayer.hpp" />
     <ClInclude Include="YellowCard.hpp" />

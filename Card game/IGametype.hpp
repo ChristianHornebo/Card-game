@@ -1,8 +1,10 @@
 #pragma once
-#include "Player.hpp"
+#include "IPlayer.hpp"
 #include <list>
+#include <iostream>
 
 class IGameType {
 public:
-	virtual void announceWinner(std::list<Player*> players) = 0;
+	virtual void announceWinner(std::list<IPlayer*> players) = 0;
+	virtual ~IGameType() { std::cout << "IGameType destroyed\n"; }
 };
