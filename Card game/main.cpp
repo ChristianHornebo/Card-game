@@ -13,33 +13,37 @@ int main() {
 	Player player2("Player 2");
 	Player player3("Player 3");
 	
-	Game* game;
 
 	std::cout << "Gametype: High or Low? ";
-	std::string gameType = "";
-	std::cin >> gameType;
-	if(gameType == "high" || gameType == "High")
-		game = new HighHandWin(deck);
-	else if(gameType == "low" || gameType == "Low")
-		game = new LowHandWin(deck);
-	else
-		game = new HighHandWin(deck);
+	std::string gameTypeChosen = "";
+	std::cin >> gameTypeChosen;
+	Game game(deck, nullptr);
 
-	game->acceptPlayer(&player1);
-	game->acceptPlayer(&player2);
-	game->acceptPlayer(&player3);
-	game->start();
+	if (gameTypeChosen == "high" || gameTypeChosen == "High") {
+		game.setGameType(new HighHandWin);
+	}
+	else if (gameTypeChosen == "low" || gameTypeChosen == "Low") {
+		game.setGameType(new LowHandWin);
+	}
 
-	std::cout << player1.showHand();
-	std::cout << "Total hand: " << player1.totalHand() << "\n\n";
-	std::cout << player2.showHand();
-	std::cout << "Total hand: " << player2.totalHand() << "\n\n";
-	std::cout << player3.showHand();
-	std::cout << "Total hand: " << player3.totalHand() << "\n\n";
+	if(game.getGameType() != nullptr) {
+		game.acceptPlayer(&player1);
+		game.acceptPlayer(&player2);
+		game.acceptPlayer(&player3);
+		game.start();
 
-	game->announceWinner();
+		std::cout << player1.showHand();
+		std::cout << "Total hand: " << player1.totalHand() << "\n\n";
+		std::cout << player2.showHand();
+		std::cout << "Total hand: " << player2.totalHand() << "\n\n";
+		std::cout << player3.showHand();
+		std::cout << "Total hand: " << player3.totalHand() << "\n\n";
 
-	delete game;
+		game.announceWinner();
+	}
+	else {
+		std::cout << "Invalid game type\n";
+	}
 
 	return 0;
 }

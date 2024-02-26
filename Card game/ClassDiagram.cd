@@ -45,7 +45,7 @@
   <Class Name="Game">
     <Position X="10.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAAAgCAAAAAAAAAgEAABQAAAAAgAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAgAAAgCQAAAAAAAAiEAABQAAAAAgAAAAA=</HashCode>
       <FileName>Game.hpp</FileName>
     </TypeIdentifier>
   </Class>
@@ -61,6 +61,27 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>WeakPlayer.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IGameType">
+    <Position X="5.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>IGametype.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HighHandWin">
+    <Position X="4.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>HighHandWin.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LowHandWin">
+    <Position X="6.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>LowHandWin.hpp</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

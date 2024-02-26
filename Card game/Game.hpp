@@ -3,11 +3,14 @@
 #include <iostream>
 #include "Player.hpp"
 #include "Deck.hpp"
+#include "IGametype.hpp"
 
 class Game {
 public:
-	Game() : gameIsStarted_(false) {}
-	Game(Deck deck) : deck_(deck), gameIsStarted_(false) {}
+	Game(Deck deck, IGameType* gameType) : deck_(deck), gameType_(gameType) {
+		gameIsStarted_ = false;
+	}
+
 	void acceptPlayer(Player* player) {
 		if (!gameIsStarted_) {
 			players_.push_back(player);
@@ -23,7 +26,24 @@ public:
 		gameIsStarted_ = true;
 	}
 
-	virtual void announceWinner() = 0;
+	void announceWinner() {
+		gameType_->announceWinner(players_);
+	}
+
+	void setGameType(IGameType* gameType) {
+		if (gameType_ != nullptr) {
+			delete gameType_;
+		}
+		gameType_ = gameType;
+	}
+
+	IGameType* getGameType() {
+		return gameType_;
+	}
+
+	~Game() {
+		delete gameType_;
+	}
 
 protected:
 	std::list<Player*> players_;
@@ -31,6 +51,7 @@ protected:
 
 private:
 	Deck deck_;
+	IGameType* gameType_ = nullptr;
 	void dealCards() {
 		for (auto& player : players_) {
 			deck_.deal(*player, 5);
