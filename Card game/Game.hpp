@@ -7,8 +7,10 @@
 
 class Game {
 public:
-	Game(Deck deck, IGameType* gameType) : deck_(deck), gameType_(gameType) {
+	Game(Deck* deck, IGameType* gameType) : deck_(deck), gameType_(gameType) {
 		gameIsStarted_ = false;
+		deck_->createDeck();
+		deck_->shuffle();
 	}
 
 	void acceptPlayer(Player* player) {
@@ -43,6 +45,7 @@ public:
 
 	~Game() {
 		delete gameType_;
+		delete deck_;
 	}
 
 protected:
@@ -50,11 +53,11 @@ protected:
 	bool gameIsStarted_;
 
 private:
-	Deck deck_;
+	Deck* deck_ = nullptr;
 	IGameType* gameType_ = nullptr;
 	void dealCards() {
 		for (auto& player : players_) {
-			deck_.deal(*player, 5);
+			deck_->deal(*player, 5);
 		}
 	}
 };

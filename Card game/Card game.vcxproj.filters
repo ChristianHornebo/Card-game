@@ -53,6 +53,12 @@
     <ClInclude Include="HighHandWin.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IGametype.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RedBlueDeck.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

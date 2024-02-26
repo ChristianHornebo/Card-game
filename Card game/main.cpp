@@ -5,14 +5,14 @@
 #include "WeakPlayer.hpp"
 #include "LowHandWin.hpp"
 #include "HighHandWin.hpp"
+#include "RedBlueDeck.hpp"
 
 int main() {
-	Deck deck;
+	Deck* deck = new RedBlueDeck();
 
 	Player player1("Player 1");
 	Player player2("Player 2");
 	Player player3("Player 3");
-	
 
 	std::cout << "Gametype: High or Low? ";
 	std::string gameTypeChosen = "";

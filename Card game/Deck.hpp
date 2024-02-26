@@ -6,15 +6,11 @@
 #include "GreenCard.hpp"
 #include "YellowCard.hpp"
 #include "Player.hpp"
+#include <iostream>
 
 
 class Deck {
 public:
-	Deck() {
-		createDeck();
-		shuffle();
-	}
-
 	void deal(Player &player, int numOfCards) {
 		for (int i = 0; i < numOfCards; i++) {
 			player.acceptCard(cards_.back());
@@ -22,10 +18,7 @@ public:
 		}
 	}
 
-private:
-	std::vector<Card> cards_;
-
-	void createDeck() {
+	virtual void createDeck() {
 		for (int i = 1; i <= 8; i++) {
 			cards_.push_back(RedCard(i));
 			cards_.push_back(BlueCard(i));
@@ -45,4 +38,7 @@ private:
 			cards_[pos2] = temp;
 		}
 	}
+
+protected:
+	std::vector<Card> cards_;
 };

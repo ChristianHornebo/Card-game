@@ -135,6 +135,7 @@
     <ClInclude Include="Card.hpp" />
     <ClInclude Include="Deck.hpp" />
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="RedBlueDeck.hpp" />
     <ClInclude Include="IGametype.hpp" />
     <ClInclude Include="HighHandWin.hpp" />
     <ClInclude Include="LowHandWin.hpp" />
