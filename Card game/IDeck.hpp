@@ -13,7 +13,7 @@ class IDeck {
 public:
 	void deal(IPlayer &player, int numOfCards) {
 		for (int i = 0; i < numOfCards; i++) {
-			player.acceptCard(cards_.back());
+			player.acceptCard(std::move(cards_.back()));
 			cards_.pop_back();
 		}
 	}
@@ -26,19 +26,16 @@ public:
 			int pos1 = rand() % cards_.size();
 			int pos2 = rand() % cards_.size();
 
-			Card* temp = cards_[pos1];
-			cards_[pos1] = cards_[pos2];
-			cards_[pos2] = temp;
+			std::unique_ptr<Card> temp = std::move(cards_[pos1]);
+			cards_[pos1] = std::move(cards_[pos2]);
+			cards_[pos2] = std::move(temp);
 		}
 	}
 
 	virtual ~IDeck() { 
 		std::cout << "IDeck destroyed\n"; 
-		for (auto card : cards_) {
-			delete card;
-		}
 	}
 
 protected:
-	std::vector<Card*> cards_;
+	std::vector<std::unique_ptr<Card>> cards_;
 };

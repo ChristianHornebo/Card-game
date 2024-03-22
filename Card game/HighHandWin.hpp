@@ -3,8 +3,8 @@
 
 class HighHandWin : public IGameType {
 public:
-	void announceWinner(std::list<IPlayer*> players) override {
-		IPlayer* winner = players.front();
+	void announceWinner(std::vector<std::shared_ptr<IPlayer>> players) override {
+		std::shared_ptr<IPlayer> winner = players.front();
 		for (auto& player : players) {
 			if (player->totalHand() > winner->totalHand()) {
 				winner = player;

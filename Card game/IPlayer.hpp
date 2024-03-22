@@ -10,7 +10,7 @@ public:
 		name_ = name;	
 	}
 
-	virtual void acceptCard(Card* card) = 0;
+	virtual void acceptCard(std::unique_ptr<Card> card) = 0;
 
 	int totalHand() {
 		int total = 0;
@@ -34,13 +34,10 @@ public:
 
 	virtual ~IPlayer() { 
 		std::cout << "IPlayer destroyed\n"; 
-			for (auto& card : cards_) {
-			delete card;
-		}
 	}
 
 protected:
-	std::vector<Card*> cards_;
+	std::vector<std::unique_ptr<Card>> cards_;
 
 private:
 	std::string name_;

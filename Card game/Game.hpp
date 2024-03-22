@@ -7,13 +7,14 @@
 
 class Game {
 public:
-	Game(IDeck* deck, IGameType* gameType) : deck_(deck), gameType_(gameType) {
+	Game(std::unique_ptr<IDeck> deck, std::unique_ptr<IGameType> gameType) 
+		: deck_(std::move(deck)), gameType_(std::move(gameType)) {
 		gameIsStarted_ = false;
 		deck_->createDeck();
 		deck_->shuffle();
 	}
 
-	void acceptPlayer(IPlayer* player) {
+	void acceptPlayer(std::shared_ptr<IPlayer> player) {
 		if (!gameIsStarted_) {
 			players_.push_back(player);
 		}
@@ -32,14 +33,11 @@ public:
 		gameType_->announceWinner(players_);
 	}
 
-	void setGameType(IGameType* gameType) {
-		if (gameType_ != nullptr) {
-			delete gameType_;
-		}
-		gameType_ = gameType;
+	void setGameType(std::unique_ptr<IGameType> gameType) {
+		gameType_ = std::move(gameType);
 	}
 
-	IGameType* getGameType() {
+	const std::unique_ptr<IGameType>& getGameType() {
 		return gameType_;
 	}
 
@@ -48,12 +46,13 @@ public:
 	}
 
 protected:
-	std::list<IPlayer*> players_;
+	std::vector<std::shared_ptr<IPlayer>> players_;
 	bool gameIsStarted_;
 
 private:
-	IDeck* deck_ = nullptr;
-	IGameType* gameType_ = nullptr;
+	std::unique_ptr<IDeck> deck_;
+	std::unique_ptr<IGameType> gameType_;
+
 	void dealCards() {
 		for (auto& player : players_) {
 			deck_->deal(*player, 5);
